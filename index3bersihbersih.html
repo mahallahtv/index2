@@ -162,102 +162,74 @@
 
     /* Judul setiap slide */
     .left-card h5 {
-        font-size: 20px !important;
-        font-weight: 700 !important;
+        font-size: 20px;
+        font-weight: 700;
         margin-bottom: 15px;
     }
 
     .left-card h5 i {
-        font-size: 20px !important;
+        font-size: 20px;
         margin-right: 8px;
     }
 
     /* Teks pesan di Slide 1 */
     #slide1 .left-card .card-body > div {
-        font-size: 18px !important;
-        line-height: 1.6 !important;
+        font-size: 18px;
+        line-height: 1.6;
     }
 
     /* Alert boxes di semua slide */
     .left-card .alert {
-        font-size: 16px !important;
-        padding: 12px 15px !important;
-        line-height: 1.5 !important;
+        font-size: 16px;
+        padding: 12px 15px ;
+        line-height: 1.5;
     }
 
     /* Khusus untuk alert di Slide 2 (Hari Besar Islam) */
     #slide2 .alert-success {
-        font-size: 17px !important;
-        font-weight: 500 !important;
+        font-size: 17px;
+        font-weight: 500;
     }
 
     /* Konten ayat hadits di Slide 3 */
     #slide3 small.text-muted {
-        font-size: 14px !important;
+        font-size: 14px;
         display: block;
         margin-bottom: 10px;
     }
 
     /* Teks ayat (Arabic) di Slide 3 */
     #slide3 div[style*="direction: rtl"] {
-        font-size: 16px !important; /* Ukuran untuk teks Arabic */
-        font-weight: 500 !important;
-        line-height: 1.8 !important;
+        font-size: 16px; /* Ukuran untuk teks Arabic */
+        font-weight: 500;
+        line-height: 1.8;
         margin: 15px 0;
     }
 
     /* Terjemahan ayat di Slide 3 */
     #slide3 div[style*="font-style: italic"] {
-        font-size: 16px !important;
-        line-height: 1.5 !important;
+        font-size: 16px;
+        line-height: 1.5;
         padding-top: 15px;
     }
 
     /* Alert di Slide 4 (Hari Besar Mendatang) */
     #slide4 .alert-info .fw-bold {
-        font-size: 17px !important;
+        font-size: 17px;
     }
 
     #slide4 .alert-info div:not(.fw-bold) {
-        font-size: 16px !important;
+        font-size: 16px;
         margin: 5px 0;
     }
 
     #slide4 .alert-info small.text-muted {
-        font-size: 14px !important;
+        font-size: 14px;
     }
 
     /* Text muted di semua slide */
     .left-card .text-muted {
-        font-size: 14px !important;
-    }
-
-    /* Responsive untuk STB */
-    @media (max-width: 768px) {
-        .left-card {
-            font-size: 14px;
-        }
-        
-        .left-card h5 {
-            font-size: 18px !important;
-        }
-        
-        #slide1 .left-card .card-body > div {
-            font-size: 16px !important;
-        }
-        
-        .left-card .alert {
-            font-size: 14px !important;
-            padding: 10px 12px !important;
-        }
-        
-        #slide3 div[style*="direction: rtl"] {
-            font-size: 20px !important;
-        }
-        
-        #slide3 div[style*="font-style: italic"] {
-            font-size: 14px !important;
-        }
+        font-size: 14px;
     }
 
     /* Jadwal Adzan */
@@ -2782,7 +2754,7 @@ function updateCarouselIndicators(slideCount) {
 function createLeftSlide1() {
     var message = settings.customMessage || 'Selamat datang di Masjid Mahallah TV';
     return '<h5><i class="bi bi-chat-text text-primary"></i> </h5>' +
-           '<div style="margin-top: 20px; font-size: 16px; line-height: 1.6;">' +
+           '<div style="margin-top: 20px; font-size: 20px; line-height: 1.6;">' +
            message.replace(/\\n/g, '<br>') +
            '</div>';
 }
@@ -2804,7 +2776,7 @@ function createLeftSlide2() {
             if (messages && messages.length > 0) {
                 var content = '<h5><i class="bi bi-calendar-event text-success"></i> Hari Besar Islam Hari Ini</h5>';
                 for (var i = 0; i < messages.length; i++) {
-                    content += '<div class="alert alert-success mt-2">' + messages[i] + '</div>';
+                    content += '<div class="alert alert-success mt-2" style="font-size: 30px;">' + messages[i] + '</div>';
                 }
                 return content;
             }
@@ -2828,10 +2800,10 @@ function createLeftSlide3() {
             
             return '<h5 style="font-size: 20px;"><i class="bi bi-book text-warning"></i> ' + item.jenis + '</h5>' +
                    '<small class="text-muted" style="font-size: 14px;">Tentang: ' + item.tentang + '</small>' +
-                   '<div style="font-size: 22px; text-align: right; direction: rtl; margin-top: 15px; line-height: 1.8;">' +
+                   '<div style="font-size: 20px; text-align: right; direction: rtl; margin-top: 15px; line-height: 1.8;">' +
                    item.isi +
                    '</div>' +
-                   '<div style="font-size: 16px; font-style: italic; margin-top: 15px; border-top: 1px solid #eee; padding-top: 15px; line-height: 1.5;">' +
+                   '<div style="font-size: 20px; font-style: italic; margin-top: 15px; border-top: 1px solid #eee; padding-top: 15px; line-height: 1.5;">' +
                    '<i class="bi bi-translate text-primary me-2"></i>' + item.terjemahan +
                    '</div>';
         }
@@ -2871,9 +2843,9 @@ function createLeftSlide4() {
 
                 content +=
                     '<div class="alert alert-info mt-2">' +
-                        '<div class="fw-bold">' + daysText + '</div>' +
-                        '<div>' + event.name + '</div>' +
-                        '<small class="text-muted">' +
+                        '<div class="fw-bold" style="font-size: 24px;">' + daysText + '</div>' +
+                        '<div style="font-size: 20px;">' + event.name + '</div>' +
+                        '<small class="text-muted" style="font-size: 20px;">' +
                             event.day + ' ' + monthName + ' ' + hijriDate.year + ' H' +
                         '</small>' +
                     '</div>';
