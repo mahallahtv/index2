@@ -887,9 +887,9 @@
     </div>
     <!-- Tengah: Logo & Nama Masjid serta Alamat -->
     <div class="col-12 col-md-4 d-flex align-items-center justify-content-center mb-2 mb-md-0">
-        <img id="masjidLogo" src="logo2.png" alt="Logo Masjid" class="img-fluid me-3" 
+        <img id="masjidLogo" src="logo.png" alt="Logo Masjid" class="img-fluid me-3" 
         style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);"
-        onerror="this.onerror=null; this.src='logo2.png'">
+        onerror="this.onerror=null; this.src='logo.png'">
       <div>
         <h2 id="masjidName" class="mb-1" style="font-weight: 800; color: white;">Mahallah TV</h2>
         <p id="masjidAddress" class="mb-0" style="font-size: 14px; color: #c6f6d5;">Dev: Rocky CHK </p>
@@ -1153,8 +1153,8 @@
         <input type="file" class="form-control" id="logoInput" accept="image/*">
         <small class="text-muted">Upload logo (PNG/JPG, maks 500KB)</small>
         <div id="logoPreview" class="mt-2 text-center">
-            <img id="logoPreviewImg" src="logo2.png" style="max-width: 200px; max-height: 200px;" 
-            class="img-thumbnail" onerror="this.onerror=null; this.src='logo2.png'">
+            <img id="logoPreviewImg" src="logo.png" style="max-width: 200px; max-height: 200px;" 
+            class="img-thumbnail" onerror="this.onerror=null; this.src='logo.png'">
         </div>
       </div>
       <div class="mb-3">
@@ -3197,7 +3197,7 @@ function updateAllLogoPreviews(logoData) {
         if (headerLogo) {
             headerLogo.src = logoData;
             headerLogo.onerror = function() {
-                this.src = 'logo2.png';
+                this.src = 'logo.png';
             };
         }
         
@@ -3206,7 +3206,7 @@ function updateAllLogoPreviews(logoData) {
         if (previewLogo) {
             previewLogo.src = logoData;
             previewLogo.onerror = function() {
-                this.src = 'logo2.png';
+                this.src = 'logo.png';
             };
         }
         
@@ -3503,7 +3503,7 @@ function setupMenuEvents() {
                 
                 if (saveSettings()) {
                     // Reset logo ke default
-                    updateAllLogoPreviews('logo2.png');
+                    updateAllLogoPreviews('logo.png');
                     
                     loadSettings();
                     loadLeftCarousel();
@@ -4448,7 +4448,8 @@ function showSplashScreen() {
     
     // Auto hide setelah 10 detik (fallback)
     setTimeout(function() {
-        if (document.getElementById('splashScreen').style.display !== 'none') {
+        var splashScreen = document.getElementById('splashScreen');
+        if (splashScreen && splashScreen.style.display !== 'none') {
             enterMainApp();
         }
     }, 10000);
@@ -4459,11 +4460,11 @@ function enterMainApp() {
     activateAudioContext();
     
     // Fade out splash screen
-    const splashScreen = document.getElementById('splashScreen');
+    var splashScreen = document.getElementById('splashScreen');
     splashScreen.classList.add('fade-out');
     
     // Sembunyikan setelah animasi selesai
-    setTimeout(() => {
+    setTimeout(function() {
         splashScreen.style.display = 'none';
         
         // Reset semua audio state
@@ -4481,10 +4482,10 @@ function enterMainApp() {
 function activateAudioContext() {
     try {
         // Buat audio context dan play audio pendek
-        const audio = new Audio();
+        var audio = new Audio();
         audio.src = 'beep.mp3'; // Gunakan file beep yang kecil
         audio.volume = 0.1; // Volume rendah
-        audio.play().then(() => {
+        audio.play().then(function() {
             // Hentikan segera
             audio.pause();
             audio.currentTime = 0;
@@ -4494,7 +4495,7 @@ function activateAudioContext() {
             // Set flag bahwa user sudah berinteraksi
             window.userInteracted = true;
             
-        }).catch(e => {
+        }).catch(function(e) {
             console.log('Audio activation attempt:', e);
             // Tetap set flag untuk melanjutkan
             window.userInteracted = true;
@@ -4507,16 +4508,16 @@ function activateAudioContext() {
 
 function testAudioPlayback() {
     // Coba mainkan shalawat sebentar untuk testing
-    const audioBeep = document.getElementById('audioBeep');
+    var audioBeep = document.getElementById('audioBeep');
     if (audioBeep) {
         audioBeep.volume = 0.3;
-        audioBeep.play().then(() => {
+        audioBeep.play().then(function() {
             // Hentikan setelah 2 detik
-            setTimeout(() => {
+            setTimeout(function() {
                 audioBeep.pause();
                 audioBeep.currentTime = 0;
             }, 2000);
-        }).catch(e => {
+        }).catch(function(e) {
             console.log('Test audio playback failed:', e);
         });
     }
@@ -4698,7 +4699,6 @@ window.onload = function() {
 };
 
 // Fungsi untuk memuat logo dengan prioritas
-// Fungsi untuk memuat logo dengan prioritas
 function loadLogoWithPriority() {
     try {
         var headerLogo = document.getElementById('masjidLogo');
@@ -4713,7 +4713,7 @@ function loadLogoWithPriority() {
         var settingsLogo = settings.logo;
         
         // PRIORITAS 3: Logo default
-        var defaultLogo = 'logo2.png';
+        var defaultLogo = 'logo.png';
         
         var logoToUse = savedLogo || settingsLogo || defaultLogo;
         
@@ -4730,8 +4730,8 @@ function loadLogoWithPriority() {
     } catch (e) {
         console.error('Error loadLogoWithPriority:', e);
         // Fallback ke default
-        if (headerLogo) headerLogo.src = 'logo2.png';
-        if (previewLogo) previewLogo.src = 'logo2.png';
+        if (headerLogo) headerLogo.src = 'logo.png';
+        if (previewLogo) previewLogo.src = 'logo.png';
     }
 }
 
@@ -4992,6 +4992,4 @@ function loadRunningTextsFromSettings() {
 </script>
 </body>
 </html>
-
-
 
