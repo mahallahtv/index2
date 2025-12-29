@@ -148,7 +148,6 @@
       background: white;
       border-radius: 12px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      font-size: 16px; /* Ukuran default */
       height: 100%;
       display: flex;
       flex-direction: column;
@@ -158,78 +157,6 @@
       flex: 1;
       overflow-y: auto;
       padding: 20px;
-    }
-
-    /* Judul setiap slide */
-    .left-card h5 {
-        font-size: 20px;
-        font-weight: 700;
-        margin-bottom: 15px;
-    }
-
-    .left-card h5 i {
-        font-size: 20px;
-        margin-right: 8px;
-    }
-
-    /* Teks pesan di Slide 1 */
-    #slide1 .left-card .card-body > div {
-        font-size: 18px;
-        line-height: 1.6;
-    }
-
-    /* Alert boxes di semua slide */
-    .left-card .alert {
-        font-size: 16px;
-        padding: 12px 15px ;
-        line-height: 1.5;
-    }
-
-    /* Khusus untuk alert di Slide 2 (Hari Besar Islam) */
-    #slide2 .alert-success {
-        font-size: 17px;
-        font-weight: 500;
-    }
-
-    /* Konten ayat hadits di Slide 3 */
-    #slide3 small.text-muted {
-        font-size: 14px;
-        display: block;
-        margin-bottom: 10px;
-    }
-
-    /* Teks ayat (Arabic) di Slide 3 */
-    #slide3 div[style*="direction: rtl"] {
-        font-size: 16px; /* Ukuran untuk teks Arabic */
-        font-weight: 500;
-        line-height: 1.8;
-        margin: 15px 0;
-    }
-
-    /* Terjemahan ayat di Slide 3 */
-    #slide3 div[style*="font-style: italic"] {
-        font-size: 16px;
-        line-height: 1.5;
-        padding-top: 15px;
-    }
-
-    /* Alert di Slide 4 (Hari Besar Mendatang) */
-    #slide4 .alert-info .fw-bold {
-        font-size: 17px;
-    }
-
-    #slide4 .alert-info div:not(.fw-bold) {
-        font-size: 16px;
-        margin: 5px 0;
-    }
-
-    #slide4 .alert-info small.text-muted {
-        font-size: 14px;
-    }
-
-    /* Text muted di semua slide */
-    .left-card .text-muted {
-        font-size: 14px;
     }
 
     /* Jadwal Adzan */
@@ -742,40 +669,6 @@
         box-shadow: 0 0 0 3px rgba(0,0,0,0.1);
     }
 
-    /* CSS untuk form Running Text */
-    .running-text-group {
-        position: relative;
-    }
-
-    .delete-running-text-btn {
-        position: absolute;
-        right: 10px;
-        top: 10px;
-        width: 30px;
-        height: 30px;
-        border-radius: 50%;
-        background-color: #dc3545;
-        color: white;
-        border: none;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        font-size: 14px;
-        transition: all 0.3s ease;
-    }
-
-    .delete-running-text-btn:hover {
-        background-color: #c82333;
-        transform: scale(1.1);
-    }
-
-    .form-label-container {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 5px;
-    }
 
 
   </style>
@@ -809,9 +702,7 @@
     </div>
     <!-- Tengah: Logo & Nama Masjid serta Alamat -->
     <div class="col-12 col-md-4 d-flex align-items-center justify-content-center mb-2 mb-md-0">
-        <img id="masjidLogo" src="logo.png" alt="Logo Masjid" class="img-fluid me-3" 
-        style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);"
-        onerror="this.onerror=null; this.src='logo.png'">
+      <img id="masjidLogo" src="logo.png" alt="Logo Masjid" class="img-fluid me-3" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);" onerror="this.src='logo.png'">
       <div>
         <h2 id="masjidName" class="mb-1" style="font-weight: 800; color: white;">Mahallah TV</h2>
         <p id="masjidAddress" class="mb-0" style="font-size: 14px; color: #c6f6d5;">Dev: Rocky CHK </p>
@@ -1075,8 +966,7 @@
         <input type="file" class="form-control" id="logoInput" accept="image/*">
         <small class="text-muted">Upload logo (PNG/JPG, maks 500KB)</small>
         <div id="logoPreview" class="mt-2 text-center">
-            <img id="logoPreviewImg" src="logo.png" style="max-width: 200px; max-height: 200px;" 
-            class="img-thumbnail" onerror="this.onerror=null; this.src='logo.png'">
+          <img id="logoPreviewImg" src="logo.png" style="max-width: 200px; max-height: 200px;" class="img-thumbnail" onerror="this.src='logo.png'">
         </div>
       </div>
       <div class="mb-3">
@@ -1103,33 +993,19 @@
     <button type="button" class="btn btn-light me-3" data-bs-toggle="offcanvas" data-bs-target="#mainOffcanvasMenu">
       <i class="bi bi-arrow-left"></i>
     </button>
-    <h5 class="offcanvas-title">📜 Running Text (Maks. 3)</h5>
+    <h5 class="offcanvas-title">📜 Running Text</h5>
   </div>
   <div class="offcanvas-body">
     <form id="runningTextForm">
       <div id="runningTextInputs">
-        <!-- Running Text 1 (wajib) -->
-        <div class="mb-3" id="runningTextGroup1">
-          <div class="d-flex justify-content-between align-items-center mb-1">
-            <label class="form-label fw-bold">Running Text 1 <span class="text-danger">*</span></label>
-            <!-- Tombol hapus akan muncul untuk RT2 dan RT3 saja -->
-          </div>
-          <input type="text" class="form-control" id="runningText1" required placeholder="Masukkan running text pertama">
+        <div class="mb-3">
+          <label class="form-label">Running Text 1</label>
+          <input type="text" class="form-control" id="runningText1" required>
         </div>
       </div>
-      
-      <!-- Tombol Tambah Running Text -->
       <button type="button" class="btn btn-info w-100 mb-3" id="addRunningTextBtn">
         <i class="bi bi-plus-circle me-2"></i>Tambah Running Text
       </button>
-      
-      <!-- Informasi -->
-      <div class="alert alert-info mb-3">
-        <i class="bi bi-info-circle me-2"></i>
-        Running text akan digabung dengan pemisah " || " dan ditampilkan berurutan
-      </div>
-      
-      <!-- Tombol Simpan -->
       <button type="submit" class="btn btn-primary w-100">
         <i class="bi bi-save me-2"></i>Simpan Running Text
       </button>
@@ -1231,7 +1107,7 @@
         </div>
         <div class="col-4">
           <button class="btn w-100 h-100 p-3" style="background-color: #663711; color: white;" onclick="changeThemeColor('#663711')">
-            Cokelat
+            Oranye
           </button>
         </div>
         <div class="col-4">
@@ -1445,8 +1321,6 @@ var defaultMainImages = [
   'default5.jpg'
 ];
 
-var ayatHaditsIndex = 0; // Indeks saat ini
-var ayatHaditsHistory = []; // Menyimpan indeks yang sudah ditampilkan
 
 // ==================== AKHIR TAMBAHAN ====================
 
@@ -2168,9 +2042,9 @@ function closeBlackOverlay() {
   });
 
   // ✅ RELOAD HALAMAN SETELAH OVERLAY BERAKHIR
-    setTimeout(() => {
-        softResetApp();
-    }, 500); // delay kecil biar STB stabil
+  setTimeout(() => {
+    location.reload();
+  }, 500); // delay kecil biar STB stabil
 }
 
 
@@ -2676,7 +2550,7 @@ function updateCarouselIndicators(slideCount) {
 function createLeftSlide1() {
     var message = settings.customMessage || 'Selamat datang di Masjid Mahallah TV';
     return '<h5><i class="bi bi-chat-text text-primary"></i> </h5>' +
-           '<div style="margin-top: 20px; font-size: 20px; line-height: 1.6;">' +
+           '<div style="margin-top: 20px; font-size: 16px; line-height: 1.6;">' +
            message.replace(/\\n/g, '<br>') +
            '</div>';
 }
@@ -2698,7 +2572,7 @@ function createLeftSlide2() {
             if (messages && messages.length > 0) {
                 var content = '<h5><i class="bi bi-calendar-event text-success"></i> Hari Besar Islam Hari Ini</h5>';
                 for (var i = 0; i < messages.length; i++) {
-                    content += '<div class="alert alert-success mt-2" style="font-size: 30px;">' + messages[i] + '</div>';
+                    content += '<div class="alert alert-success mt-2">' + messages[i] + '</div>';
                 }
                 return content;
             }
@@ -2715,17 +2589,15 @@ function createLeftSlide2() {
 function createLeftSlide3() {
     try {
         if (typeof ayatHaditsData !== 'undefined' && ayatHaditsData.length > 0) {
-            // Ambil ayat/hadits berikutnya (secara bergantian)
-            var item = getNextAyatHadits();
+            var randomIndex = Math.floor(Math.random() * ayatHaditsData.length);
+            var item = ayatHaditsData[randomIndex];
             
-            if (!item) return null;
-            
-            return '<h5 style="font-size: 20px;"><i class="bi bi-book text-warning"></i> ' + item.jenis + '</h5>' +
-                   '<small class="text-muted" style="font-size: 14px;">Tentang: ' + item.tentang + '</small>' +
-                   '<div style="font-size: 20px; text-align: right; direction: rtl; margin-top: 15px; line-height: 1.8;">' +
+            return '<h5><i class="bi bi-book text-warning"></i> ' + item.jenis + '</h5>' +
+                   '<small class="text-muted">Tentang: ' + item.tentang + '</small>' +
+                   '<div style="font-size: 16px; text-align: right; direction: rtl; margin-top: 15px;">' +
                    item.isi +
                    '</div>' +
-                   '<div style="font-size: 20px; font-style: italic; margin-top: 15px; border-top: 1px solid #eee; padding-top: 15px; line-height: 1.5;">' +
+                   '<div style="font-size: 14px; font-style: italic; margin-top: 15px; border-top: 1px solid #eee; padding-top: 10px;">' +
                    '<i class="bi bi-translate text-primary me-2"></i>' + item.terjemahan +
                    '</div>';
         }
@@ -2765,9 +2637,9 @@ function createLeftSlide4() {
 
                 content +=
                     '<div class="alert alert-info mt-2">' +
-                        '<div class="fw-bold" style="font-size: 24px;">' + daysText + '</div>' +
-                        '<div style="font-size: 20px;">' + event.name + '</div>' +
-                        '<small class="text-muted" style="font-size: 20px;">' +
+                        '<div class="fw-bold">' + daysText + '</div>' +
+                        '<div>' + event.name + '</div>' +
+                        '<small class="text-muted">' +
                             event.day + ' ' + monthName + ' ' + hijriDate.year + ' H' +
                         '</small>' +
                     '</div>';
@@ -2813,109 +2685,6 @@ function loadMainCarousel() {
 
 }
 
-// ==================== FUNGSI UNTUK MENDAPATKAN AYAT/HADITS BERIKUTNYA ====================
-function getNextAyatHadits() {
-    if (!ayatHaditsData || ayatHaditsData.length === 0) {
-        return null;
-    }
-    
-    // Jika semua sudah ditampilkan, reset history
-    if (ayatHaditsHistory.length >= ayatHaditsData.length) {
-        ayatHaditsHistory = [];
-    }
-    
-    // Cari indeks yang belum ditampilkan
-    var availableIndices = [];
-    for (var i = 0; i < ayatHaditsData.length; i++) {
-        if (!ayatHaditsHistory.includes(i)) {
-            availableIndices.push(i);
-        }
-    }
-    
-    // Pilih secara acak dari yang belum ditampilkan
-    if (availableIndices.length > 0) {
-        var randomIndex = Math.floor(Math.random() * availableIndices.length);
-        ayatHaditsIndex = availableIndices[randomIndex];
-    } else {
-        // Jika semua sudah ditampilkan, mulai lagi dari awal
-        ayatHaditsHistory = [];
-        ayatHaditsIndex = Math.floor(Math.random() * ayatHaditsData.length);
-    }
-    
-    // Tambahkan ke history
-    ayatHaditsHistory.push(ayatHaditsIndex);
-    
-    return ayatHaditsData[ayatHaditsIndex];
-}
-
-// ==================== FUNGSI UNTUK MENDETEKSI PERGANTIAN SLIDE ====================
-function setupCarouselSlideDetection() {
-    // Deteksi untuk slide kiri
-    var leftCarousel = document.getElementById('leftCarousel');
-    if (leftCarousel) {
-        leftCarousel.addEventListener('slide.bs.carousel', function(event) {
-            var nextSlideIndex = event.to;
-            console.log('Slide kiri berganti ke:', nextSlideIndex);
-            
-            // Jika slide 3 yang akan aktif, refresh kontennya
-            if (nextSlideIndex === 2) { // Index 2 = Slide 3 (0-based index)
-                refreshSlide3Content();
-            }
-        });
-    }
-    
-    // Deteksi untuk slide kanan
-    var mainCarousel = document.getElementById('mainCarousel');
-    if (mainCarousel) {
-        mainCarousel.addEventListener('slide.bs.carousel', function(event) {
-            console.log('Slide kanan berganti ke:', event.to);
-            // Tidak perlu refresh ayat/hadits untuk slide kanan
-        });
-    }
-}
-
-// ==================== FUNGSI REFRESH SLIDE 3 ====================
-function refreshSlide3Content() {
-    try {
-        var slide3Element = document.getElementById('slide3');
-        if (slide3Element) {
-            var newContent = createLeftSlide3();
-            if (newContent) {
-                slide3Element.innerHTML = '<div class="left-card"><div class="card-body">' + 
-                                         newContent + '</div></div>';
-                console.log('Slide 3 diperbarui dengan ayat/hadits baru');
-                
-                // Tambahkan efek visual halus (optional)
-                slide3Element.style.opacity = '0';
-                setTimeout(function() {
-                    slide3Element.style.opacity = '1';
-                }, 100);
-            }
-        }
-    } catch (e) {
-        console.log('Error refreshSlide3Content:', e);
-    }
-}
-
-// ==================== FUNGSI INISIALISASI (TAMBAHKAN INI) ====================
-function initAyatHaditsSystem() {
-    try {
-        // Setup deteksi pergantian slide
-        setupCarouselSlideDetection();
-        
-        // Reset history saat aplikasi dimulai
-        ayatHaditsHistory = [];
-        
-        // Load ayat/hadits pertama kali
-        if (typeof ayatHaditsData !== 'undefined' && ayatHaditsData.length > 0) {
-            getNextAyatHadits(); // Inisialisasi pertama
-        }
-        
-        console.log('Ayat/Hadits system initialized with ' + (ayatHaditsData?.length || 0) + ' items');
-    } catch (e) {
-        console.log('Error initAyatHaditsSystem:', e);
-    }
-}
 
 
 // ==================== RUNNING TEXT ====================
@@ -2924,14 +2693,10 @@ function initRunningText() {
 }
 
 function updateRunningTextUI() {
-    try {
-        var runningText = settings.runningText || 'Mohon untuk Menonaktifkan atau Mode Silent HP Anda jika Iqamah Telah Tiba';
-        var display = document.getElementById('runningTextDisplay');
-        if (display) {
-            display.innerHTML = runningText;
-        }
-    } catch (e) {
-        console.log('Error updateRunningTextUI:', e);
+    var runningText = settings.runningText || 'Mohon untuk Menonaktifkan atau Mode Silent HP Anda jika Iqamah Telah Tiba';
+    var display = document.getElementById('runningTextDisplay');
+    if (display) {
+        display.innerHTML = runningText;
     }
 }
 
@@ -2945,19 +2710,33 @@ function loadSettings() {
         }
         
         // Update UI dengan data yang di-load
-        document.getElementById('masjidName').textContent = settings.masjidName || 'Mahallah TV';
-        document.getElementById('masjidAddress').textContent = settings.masjidAddress || 'Dev: Rocky CHK';
-        document.getElementById('namaMasjidInput').value = settings.masjidName || 'Mahallah TV';
-        document.getElementById('alamatMasjidInput').value = settings.masjidAddress || 'Dev: Rocky CHK';
-        document.getElementById('pesanTeksInput').value = settings.customMessage ? settings.customMessage.replace(/\\n/g, '\n') : 'Selamat datang di Masjid Mahallah TV\\n\\nMari bersama menjaga kebersihan dan ketertiban masjid untuk kenyamanan beribadah kita semua.';
+        document.getElementById('masjidName').textContent = settings.masjidName;
+        document.getElementById('masjidAddress').textContent = settings.masjidAddress;
+        document.getElementById('namaMasjidInput').value = settings.masjidName;
+        document.getElementById('alamatMasjidInput').value = settings.masjidAddress;
+        document.getElementById('pesanTeksInput').value = settings.customMessage.replace(/\\n/g, '\n');
+        document.getElementById('runningText1').value = settings.runningText;
+        document.getElementById('charCount').textContent = (settings.customMessage.length - (settings.customMessage.match(/\\\\n/g) || []).length * 2) + '/300 karakter';
         
-        // Load running texts
-        loadRunningTextsFromSettings();
-        
-        document.getElementById('charCount').textContent = (settings.customMessage ? settings.customMessage.length - (settings.customMessage.match(/\\\\n/g) || []).length * 2 : 0) + '/300 karakter';
-        
-        // ========== PERBAIKAN: LOAD LOGO DENGAN PRIORITAS ==========
-        loadLogoWithPriority();
+        // Load logo dari localStorage (priority) atau dari settings
+        var savedLogo = localStorage.getItem('masjid_logo');
+        if (savedLogo) {
+            // Gunakan logo dari localStorage
+            settings.logo = savedLogo;
+            document.getElementById('masjidLogo').src = savedLogo;
+            document.getElementById('logoPreviewImg').src = savedLogo;
+        } else if (settings.logo) {
+            // Gunakan logo dari settings
+            document.getElementById('masjidLogo').src = settings.logo;
+            document.getElementById('logoPreviewImg').src = settings.logo;
+        } else {
+            // Gunakan default
+            document.getElementById('masjidLogo').src = 'logo.png';
+            document.getElementById('logoPreviewImg').src = 'logo.png';
+        }
+
+        // Load logo dengan fallback
+        loadLogoWithFallback();
         
         // Load gambar
         updateImagesList();
@@ -3004,6 +2783,16 @@ function saveSettings() {
     }
 }
 
+function setupSimpleEvents() {
+    // Setup form submit untuk STB
+    setupFormEvents();
+    
+    // Setup click events untuk waktu sholat
+    setupPrayerClickEvents();
+    
+    // Setup menu events
+    setupMenuEvents();
+}
 
 function setupFormEvents() {
     // Form Data Masjid
@@ -3024,12 +2813,6 @@ function setupFormEvents() {
             saveRunningText();
             return false;
         };
-    }
-
-    // Setup tombol Tambah Running Text
-    var addRunningTextBtn = document.getElementById('addRunningTextBtn');
-    if (addRunningTextBtn) {
-        addRunningTextBtn.addEventListener('click', addRunningTextInput);
     }
     
     // Form Pesan Teks
@@ -3058,45 +2841,25 @@ function saveMasjidData() {
     
     // Handle logo upload
     var logoInput = document.getElementById('logoInput');
-    var logoFile = logoInput.files[0];
-    
-    if (logoFile) {
-        // Validasi file
-        if (logoFile.size > 500 * 1024) { // 500KB
-            showToast('⚠️ Ukuran logo terlalu besar (maks 500KB)', 'warning');
-            return false;
-        }
-        
-        if (!logoFile.type.match('image.*')) {
-            showToast('⚠️ Format file harus gambar', 'warning');
-            return false;
-        }
-        
+    if (logoInput.files.length > 0) {
+        var file = logoInput.files[0];
         var reader = new FileReader();
         reader.onload = function(e) {
-            // Simpan ke localStorage (priority 1)
-            localStorage.setItem('masjid_logo', e.target.result);
-            
-            // Juga simpan ke settings object
+            // Simpan data base64 ke settings
             settings.logo = e.target.result;
             
-            // Update semua preview logo
-            updateAllLogoPreviews(e.target.result);
+            // Update preview
+            document.getElementById('masjidLogo').src = e.target.result;
+            document.getElementById('logoPreviewImg').src = e.target.result;
             
-            // Simpan settings ke localStorage
+            // Simpan settings
             if (saveSettings()) {
-                showToast('✅ Logo berhasil diupload!', 'success');
-                
-                // Reset input file
-                logoInput.value = '';
+                // Simpan juga ke localStorage terpisah untuk logo
+                localStorage.setItem('masjid_logo', e.target.result);
+                showToast('✅ Data masjid berhasil disimpan!', 'success');
             }
         };
-        
-        reader.onerror = function() {
-            showToast('❌ Gagal membaca file logo', 'danger');
-        };
-        
-        reader.readAsDataURL(logoFile);
+        reader.readAsDataURL(file);
     } else {
         // Jika tidak ada file baru, tetap simpan data text
         if (saveSettings()) {
@@ -3104,41 +2867,9 @@ function saveMasjidData() {
         }
     }
     
-    // Update UI text
+    // Update UI
     document.getElementById('masjidName').textContent = settings.masjidName;
     document.getElementById('masjidAddress').textContent = settings.masjidAddress;
-    
-    return false;
-}
-
-// ==================== FUNGSI UPDATE LOGO ====================
-function updateAllLogoPreviews(logoData) {
-    try {
-        // 1. Update logo di header SAJA
-        var headerLogo = document.getElementById('masjidLogo');
-        if (headerLogo) {
-            headerLogo.src = logoData;
-            headerLogo.onerror = function() {
-                this.src = 'logo.png';
-            };
-        }
-        
-        // 2. Update logo preview di form SAJA
-        var previewLogo = document.getElementById('logoPreviewImg');
-        if (previewLogo) {
-            previewLogo.src = logoData;
-            previewLogo.onerror = function() {
-                this.src = 'logo.png';
-            };
-        }
-        
-        // 3. SPLASH SCREEN LOGO TIDAK DIUPDATE
-        // Logo splash screen tetap menggunakan logo default
-        
-        console.log('Logo updated (header & preview only)');
-    } catch (e) {
-        console.error('Error updateAllLogoPreviews:', e);
-    }
 }
 
 function saveRunningText() {
@@ -3409,29 +3140,28 @@ function setupMenuEvents() {
     var resetBtn = document.getElementById('resetMasjidData');
     if (resetBtn) {
         resetBtn.onclick = function() {
-            // Di dalam resetBtn.onclick:
             if (confirm('Reset data masjid ke default?')) {
                 settings.masjidName = 'Mahallah TV';
                 settings.masjidAddress = 'Dev : Rocky CHK';
-                settings.runningText = 'Mohon untuk Menonaktifkan atau Mode Silent HP Anda jika Iqamah Telah Tiba, Agar tidak mengganggu kekhusyukan Shalat || Allah Subhanahu Wa Ta\'ala berfirman : "Sesungguhnya shalat itu mencegah dari (perbuatan) keji dan mungkar" (Q.S. Al-Ankabut:45).';
-                settings.runningTexts = [settings.runningText];
+                settings.runningText = 'Mohon untuk Menonaktifkan atau Mode Silent HP Anda jika Iqamah Telah Tiba, Agar tidak mengganggu kekhusyukan Shalat';
                 settings.customMessage = 'Selamat datang di Masjid Mahallah TV\\n\\nMari bersama menjaga kebersihan dan ketertiban masjid untuk kenyamanan beribadah kita semua.';
                 settings.uploadedImages = [];
-                settings.themeColor = '#005a31';
+                settings.themeColor = '#005a31'; // Reset warna juga
                 settings.logo = null; // Hapus logo dari settings
-                
-                // HAPUS logo dari localStorage
+            
+                // Hapus logo dari localStorage
                 localStorage.removeItem('masjid_logo');
-                
+            
                 if (saveSettings()) {
                     // Reset logo ke default
-                    updateAllLogoPreviews('logo.png');
+                    document.getElementById('masjidLogo').src = 'logo.png';
+                    document.getElementById('logoPreviewImg').src = 'logo.png';
                     
                     loadSettings();
                     loadLeftCarousel();
                     loadMainCarousel();
                     updateRunningTextUI();
-                    applyThemeColor('#005a31', true);
+                    applyThemeColor('#005a31', true); // Terapkan warna default
                     showToast('✅ Data berhasil direset!', 'success');
                 }
             }
@@ -3470,44 +3200,13 @@ function setupLogoPreview() {
     if (logoInput) {
         logoInput.addEventListener('change', function(e) {
             if (this.files && this.files[0]) {
-                var file = this.files[0];
-                
-                // Validasi
-                if (file.size > 500 * 1024) {
-                    showToast('⚠️ Ukuran logo terlalu besar (maks 500KB)', 'warning');
-                    this.value = '';
-                    return;
-                }
-                
-                if (!file.type.match('image.*')) {
-                    showToast('⚠️ Format file harus gambar', 'warning');
-                    this.value = '';
-                    return;
-                }
-                
                 var reader = new FileReader();
                 reader.onload = function(e) {
-                    // Tampilkan preview DI FORM SAJA
-                    var previewImg = document.getElementById('logoPreviewImg');
-                    if (previewImg) {
-                        previewImg.src = e.target.result;
-                        previewImg.style.display = 'block';
-                    }
-                    
-                    // Tampilkan juga DI HEADER (preview real-time)
-                    var headerLogo = document.getElementById('masjidLogo');
-                    if (headerLogo) {
-                        headerLogo.src = e.target.result;
-                    }
-                    
-                    // SPLASH SCREEN TIDAK DIUPDATE
+                    // Tampilkan preview
+                    document.getElementById('logoPreviewImg').src = e.target.result;
+                    document.getElementById('logoPreviewImg').style.display = 'block';
                 };
-                
-                reader.onerror = function() {
-                    showToast('❌ Gagal membaca file logo', 'danger');
-                };
-                
-                reader.readAsDataURL(file);
+                reader.readAsDataURL(this.files[0]);
             }
         });
     }
@@ -3616,6 +3315,52 @@ function loadPrayerOffsets() {
   }
 }
 
+
+
+function stopAllAudio() {
+    try {
+        const audioElements = [
+            'audioShalawat',
+            'audioAdzan', 
+            'audioBeep',
+            'audioRooster'
+        ];
+        
+        audioElements.forEach(id => {
+            const audio = document.getElementById(id);
+            if (audio) {
+                audio.pause();
+                audio.currentTime = 0;
+                audio.loop = false;
+            }
+        });
+
+        // Hentikan interval Imsak dan Syuruq jika aktif
+        if (imsakState.interval) {
+            clearInterval(imsakState.interval);
+            imsakState.interval = null;
+            imsakState.active = false;
+        }
+        
+        if (syuruqState.interval) {
+            clearInterval(syuruqState.interval);
+            syuruqState.interval = null;
+            syuruqState.active = false;
+        }
+        
+        // Reset flag rooster jika audio dihentikan paksa
+        if (countdownState.prayer === 'imsak') {
+            roosterPlayedToday = false;
+        }
+        
+        // Tutup popup Imsak dan Syuruq jika terbuka
+        document.getElementById('popupImsakOverlay').style.display = 'none';
+        document.getElementById('popupSyuruqOverlay').style.display = 'none';
+        
+    } catch (e) {
+        console.log('Error stopAllAudio:', e);
+    }
+}
 
 function showToast(message, type = 'info') {
     try {
@@ -4312,8 +4057,8 @@ document.onkeydown = function(e) {
             var prevBtn = document.querySelector('.carousel-control-prev');
             if (prevBtn) prevBtn.click();
             break;
-
-        case 39: // Right arrow (untuk masuk dari splash screen)
+            
+        case 39: // Right arrow
             var nextBtn = document.querySelector('.carousel-control-next');
             if (nextBtn) nextBtn.click();
             break;
@@ -4358,119 +4103,7 @@ function applyPrayerOffsets() {
   updatePrayerTimesUI();
 }
 
-function resetAllAudioStates() {
-    // Reset semua state audio
-    if (window.countdownState) {
-        countdownState.active = false;
-        countdownState.type = null;
-        countdownState.prayer = null;
-        countdownState.remaining = 0;
-        if (countdownState.interval) {
-            clearInterval(countdownState.interval);
-            countdownState.interval = null;
-        }
-    }
-    
-    if (window.warningState) {
-        warningState.active = false;
-        if (warningState.interval) {
-            clearInterval(warningState.interval);
-            warningState.interval = null;
-        }
-    }
-    
-    // Hentikan semua audio
-    stopAllAudio();
-}
 
-// ==================== FUNGSI RESET APLIKASI TANPA REFRESH ====================
-function softResetApp() {
-    console.log('Soft reset aplikasi tanpa refresh halaman');
-    
-    // 1. Reset semua state audio
-    stopAllAudio();
-    
-    // 2. Reset countdown state
-    countdownState.active = false;
-    countdownState.type = null;
-    countdownState.prayer = null;
-    countdownState.remaining = 0;
-    if (countdownState.interval) {
-        clearInterval(countdownState.interval);
-        countdownState.interval = null;
-    }
-    
-    // 3. Reset warning state
-    warningState.active = false;
-    if (warningState.interval) {
-        clearInterval(warningState.interval);
-        warningState.interval = null;
-    }
-    
-    // 4. Reset imsak & syuruq state
-    imsakState.active = false;
-    imsakState.beepCount = 0;
-    if (imsakState.interval) {
-        clearInterval(imsakState.interval);
-        imsakState.interval = null;
-    }
-    
-    syuruqState.active = false;
-    syuruqState.beepCount = 0;
-    if (syuruqState.interval) {
-        clearInterval(syuruqState.interval);
-        syuruqState.interval = null;
-    }
-    
-    // 5. Tutup semua popup
-    const popups = [
-        'popupAdzanOverlay',
-        'iqamahPopupOverlay', 
-        'warningPopupOverlay',
-        'popupImsakOverlay',
-        'popupSyuruqOverlay'
-    ];
-    
-    popups.forEach(id => {
-        const popup = document.getElementById(id);
-        if (popup) popup.style.display = 'none';
-    });
-    
-    // 6. Reset carousel ke slide pertama
-    try {
-        const leftCarousel = bootstrap.Carousel.getInstance(document.getElementById('leftCarousel'));
-        const mainCarousel = bootstrap.Carousel.getInstance(document.getElementById('mainCarousel'));
-        
-        if (leftCarousel) leftCarousel.to(0);
-        if (mainCarousel) mainCarousel.to(0);
-    } catch (e) {
-        console.log('Error resetting carousel:', e);
-    }
-    
-    // 7. Update waktu/jadwal
-    updateClock();
-    updateDate();
-    updateHijri();
-    highlightNextPrayer();
-    
-    // 8. Update Jumat display
-    updateJumatDisplay();
-    
-    // 9. Tampilkan toast notifikasi
-    showToast('🔄 Aplikasi direset tanpa refresh halaman', 'info');
-
-    // 10. Reset sistem ayat/hadits
-    ayatHaditsHistory = [];
-    ayatHaditsIndex = 0;
-    
-    // Refresh slide 3 jika sedang aktif
-    var slide3Element = document.getElementById('slide3');
-    if (slide3Element && slide3Element.classList.contains('active')) {
-        refreshSlide3Content();
-    }
-    
-    console.log('Soft reset selesai');
-}
 
 // ==================== INTEGRASI SCREEN MANAGER ====================
 // Pastikan screen manager tidak mengganggu fungsi utama
@@ -4484,18 +4117,7 @@ window.onload = function() {
 
     // Cek dan update tampilan Jumat
     updateJumatDisplay();
-
-    // Inisialisasi komponen
-    initClock();
-    initDate();
-    initHijri();
-    initPrayerTimes();
-    initCarousels();
-    initRunningText();
-
-    // Inisialisasi refresh ayat/hadits ← TAMBAH INI
-    initAyatHaditsSystem();
-
+    
     // Load data dari localStorage
     loadSettings();
     
@@ -4507,7 +4129,14 @@ window.onload = function() {
     loadPrayerOffsets();
 
     updateHijri();
- 
+    // Inisialisasi komponen
+    initClock();
+    initDate();
+    initHijri();
+    initPrayerTimes();
+    initCarousels();
+    initRunningText();
+
     applyPrayerOffsets();
 
     // Cleanup localStorage jika perlu
@@ -4530,48 +4159,36 @@ window.onload = function() {
     }
 };
 
-// Fungsi untuk memuat logo dengan prioritas
-// Fungsi untuk memuat logo dengan prioritas
-function loadLogoWithPriority() {
-    try {
-        var headerLogo = document.getElementById('masjidLogo');
-        var previewLogo = document.getElementById('logoPreviewImg');
-        
-        if (!headerLogo || !previewLogo) return;
-        
-        // PRIORITAS 1: Logo dari localStorage (terbaru)
-        var savedLogo = localStorage.getItem('masjid_logo');
-        
-        // PRIORITAS 2: Logo dari settings object
-        var settingsLogo = settings.logo;
-        
-        // PRIORITAS 3: Logo default
-        var defaultLogo = 'logo.png';
-        
-        var logoToUse = savedLogo || settingsLogo || defaultLogo;
-        
-        // Update hanya header dan preview
-        if (headerLogo) headerLogo.src = logoToUse;
-        if (previewLogo) previewLogo.src = logoToUse;
-        
-        // Juga simpan ke settings untuk konsistensi
-        if (savedLogo && !settings.logo) {
-            settings.logo = savedLogo;
-            saveSettings();
-        }
-        
-    } catch (e) {
-        console.error('Error loadLogoWithPriority:', e);
-        // Fallback ke default
-        if (headerLogo) headerLogo.src = 'logo.png';
-        if (previewLogo) previewLogo.src = 'logo.png';
+// Fungsi untuk memuat logo dengan timeout
+function loadLogoWithFallback() {
+    var logoElement = document.getElementById('masjidLogo');
+    var previewElement = document.getElementById('logoPreviewImg');
+    
+    if (!logoElement || !previewElement) return;
+    
+    // Cek localStorage untuk logo
+    var savedLogo = localStorage.getItem('masjid_logo');
+    
+    if (savedLogo) {
+        // Gunakan timeout untuk mencegah blocking
+        setTimeout(function() {
+            try {
+                // Coba set logo
+                logoElement.src = savedLogo;
+                previewElement.src = savedLogo;
+            } catch (e) {
+                console.error('Error loading logo from localStorage:', e);
+                // Fallback ke default
+                logoElement.src = 'logo.png';
+                previewElement.src = 'logo.png';
+            }
+        }, 100);
     }
 }
 
 // Modifikasi fungsi stopAllAudio untuk integrasi
 function stopAllAudio() {
     try {
-
         const audioElements = [
             'audioShalawat',
             'audioAdzan', 
@@ -4617,204 +4234,6 @@ function stopAllAudio() {
         
     } catch (e) {
         console.log('Error stopAllAudio:', e);
-    }
-}
-
-// ==================== FUNGSI RUNNING TEXT DINAMIS ====================
-var runningTextCount = 1; // Mulai dari 1 karena RT1 sudah ada
-
-function addRunningTextInput() {
-    runningTextCount++;
-    
-    if (runningTextCount > 3) {
-        showToast('⚠️ Maksimal 3 running text!', 'warning');
-        return;
-    }
-    
-    // Buat elemen input baru
-    var newInputGroup = document.createElement('div');
-    newInputGroup.className = 'mb-3 running-text-group';
-    newInputGroup.id = 'runningTextGroup' + runningTextCount;
-    
-    newInputGroup.innerHTML = `
-        <div class="form-label-container">
-            <label class="form-label fw-bold">Running Text ${runningTextCount}</label>
-            <button type="button" class="delete-running-text-btn" onclick="removeRunningTextInput(${runningTextCount})">
-                <i class="bi bi-x"></i>
-            </button>
-        </div>
-        <input type="text" class="form-control" id="runningText${runningTextCount}" 
-               placeholder="Masukkan running text ${runningTextCount}">
-    `;
-    
-    // Tambahkan sebelum tombol "Tambah Running Text"
-    document.getElementById('runningTextInputs').appendChild(newInputGroup);
-    
-    // Load data yang sudah tersimpan
-    loadSavedRunningText(runningTextCount);
-    
-    // Update tombol jika sudah mencapai maksimal
-    updateAddRunningTextButton();
-}
-
-function removeRunningTextInput(id) {
-    var element = document.getElementById('runningTextGroup' + id);
-    if (element) {
-        element.remove();
-        runningTextCount--;
-        
-        // Reset ID untuk elemen yang tersisa
-        reorderRunningTextInputs();
-        
-        // Update tombol
-        updateAddRunningTextButton();
-        
-        showToast('Running Text dihapus', 'info');
-    }
-}
-
-function reorderRunningTextInputs() {
-    var groups = document.querySelectorAll('#runningTextInputs .running-text-group');
-    runningTextCount = groups.length + 1; // +1 untuk RT1 yang bukan .running-text-group
-    
-    groups.forEach((group, index) => {
-        var groupId = index + 2; // Mulai dari RT2
-        group.id = 'runningTextGroup' + groupId;
-        
-        // Update label
-        var label = group.querySelector('.form-label');
-        if (label) {
-            label.textContent = 'Running Text ' + groupId;
-        }
-        
-        // Update input id
-        var input = group.querySelector('input');
-        if (input) {
-            input.id = 'runningText' + groupId;
-            input.placeholder = 'Masukkan running text ' + groupId;
-        }
-        
-        // Update tombol hapus
-        var deleteBtn = group.querySelector('.delete-running-text-btn');
-        if (deleteBtn) {
-            deleteBtn.setAttribute('onclick', 'removeRunningTextInput(' + groupId + ')');
-        }
-    });
-}
-
-function updateAddRunningTextButton() {
-    var addBtn = document.getElementById('addRunningTextBtn');
-    if (addBtn) {
-        if (runningTextCount >= 3) {
-            addBtn.style.display = 'none';
-        } else {
-            addBtn.style.display = 'block';
-        }
-    }
-}
-
-function loadSavedRunningText(index) {
-    try {
-        var savedSettings = localStorage.getItem('masjidSettings');
-        if (savedSettings) {
-            var settings = JSON.parse(savedSettings);
-            var runningTexts = settings.runningTexts || [];
-            
-            if (runningTexts[index - 1]) {
-                document.getElementById('runningText' + index).value = runningTexts[index - 1];
-            }
-        }
-    } catch (e) {
-        console.log('Error loading running text:', e);
-    }
-}
-
-// Update fungsi saveRunningText() untuk handle multiple running texts
-function saveRunningText() {
-    try {
-        var runningTexts = [];
-        
-        // Kumpulkan semua running text
-        for (var i = 1; i <= runningTextCount; i++) {
-            var input = document.getElementById('runningText' + i);
-            if (input && input.value.trim() !== '') {
-                runningTexts.push(input.value.trim());
-            }
-        }
-        
-        // Gabungkan dengan pemisah " || "
-        var combinedText = runningTexts.join(' || ');
-        
-        // Simpan ke settings
-        settings.runningText = combinedText;
-        settings.runningTexts = runningTexts; // Simpan array juga untuk load nanti
-        
-        if (saveSettings()) {
-            updateRunningTextUI();
-            showToast('✅ Running text berhasil disimpan!', 'success');
-            
-            // Tutup offcanvas
-            var offcanvas = bootstrap.Offcanvas.getInstance(document.getElementById('offcanvasRunningText'));
-            if (offcanvas) {
-                offcanvas.hide();
-            }
-        }
-    } catch (e) {
-        console.log('Error saveRunningText:', e);
-        showToast('❌ Gagal menyimpan running text!', 'danger');
-    }
-}
-
-
-function loadRunningTextsFromSettings() {
-    try {
-        // Reset running text count
-        runningTextCount = 1;
-        
-        // Clear semua input kecuali yang pertama
-        var inputsContainer = document.getElementById('runningTextInputs');
-        var firstInput = document.getElementById('runningText1');
-        
-        if (inputsContainer && firstInput) {
-            // Set RT1
-            var runningTexts = settings.runningTexts || [];
-            if (runningTexts.length > 0) {
-                firstInput.value = runningTexts[0] || '';
-            } else if (settings.runningText) {
-                firstInput.value = settings.runningText;
-            }
-            
-            // Hapus input tambahan yang ada
-            var additionalGroups = inputsContainer.querySelectorAll('.running-text-group');
-            additionalGroups.forEach(group => group.remove());
-            
-            // Buat input untuk RT2 dan RT3 jika ada
-            for (var i = 1; i < runningTexts.length; i++) {
-                runningTextCount++;
-                
-                var newInputGroup = document.createElement('div');
-                newInputGroup.className = 'mb-3 running-text-group';
-                newInputGroup.id = 'runningTextGroup' + runningTextCount;
-                
-                newInputGroup.innerHTML = `
-                    <div class="form-label-container">
-                        <label class="form-label fw-bold">Running Text ${runningTextCount}</label>
-                        <button type="button" class="delete-running-text-btn" onclick="removeRunningTextInput(${runningTextCount})">
-                            <i class="bi bi-x"></i>
-                        </button>
-                    </div>
-                    <input type="text" class="form-control" id="runningText${runningTextCount}" 
-                           value="${runningTexts[i] || ''}" placeholder="Masukkan running text ${runningTextCount}">
-                `;
-                
-                inputsContainer.appendChild(newInputGroup);
-            }
-            
-            // Update tombol tambah
-            updateAddRunningTextButton();
-        }
-    } catch (e) {
-        console.log('Error loadRunningTextsFromSettings:', e);
     }
 }
 
