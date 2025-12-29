@@ -36,6 +36,9 @@ const hariIslamData = {
         if (event.name === "Tahun Baru Hijriyah") {
           message = `Selamat Tahun Baru Hijriyah ${year}`;
         }
+        if (event.name === "Idul Fitri") {
+          message = `Selamat Hari Raya Idul Fitri ${year}. Minal 'Aidhin Wal Faidzin, Mohon Maaf Lahir & Batin`;
+        }
         messages.push(message);
       }
     });
