@@ -887,9 +887,9 @@
     </div>
     <!-- Tengah: Logo & Nama Masjid serta Alamat -->
     <div class="col-12 col-md-4 d-flex align-items-center justify-content-center mb-2 mb-md-0">
-        <img id="masjidLogo" src="logo.png" alt="Logo Masjid" class="img-fluid me-3" 
+        <img id="masjidLogo" src="logo2.png" alt="Logo Masjid" class="img-fluid me-3" 
         style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);"
-        onerror="this.onerror=null; this.src='logo.png'">
+        onerror="this.onerror=null; this.src='logo2.png'">
       <div>
         <h2 id="masjidName" class="mb-1" style="font-weight: 800; color: white;">Mahallah TV</h2>
         <p id="masjidAddress" class="mb-0" style="font-size: 14px; color: #c6f6d5;">Dev: Rocky CHK </p>
@@ -1153,8 +1153,8 @@
         <input type="file" class="form-control" id="logoInput" accept="image/*">
         <small class="text-muted">Upload logo (PNG/JPG, maks 500KB)</small>
         <div id="logoPreview" class="mt-2 text-center">
-            <img id="logoPreviewImg" src="logo.png" style="max-width: 200px; max-height: 200px;" 
-            class="img-thumbnail" onerror="this.onerror=null; this.src='logo.png'">
+            <img id="logoPreviewImg" src="logo2.png" style="max-width: 200px; max-height: 200px;" 
+            class="img-thumbnail" onerror="this.onerror=null; this.src='logo2.png'">
         </div>
       </div>
       <div class="mb-3">
@@ -3197,7 +3197,7 @@ function updateAllLogoPreviews(logoData) {
         if (headerLogo) {
             headerLogo.src = logoData;
             headerLogo.onerror = function() {
-                this.src = 'logo.png';
+                this.src = 'logo2.png';
             };
         }
         
@@ -3206,7 +3206,7 @@ function updateAllLogoPreviews(logoData) {
         if (previewLogo) {
             previewLogo.src = logoData;
             previewLogo.onerror = function() {
-                this.src = 'logo.png';
+                this.src = 'logo2.png';
             };
         }
         
@@ -3503,7 +3503,7 @@ function setupMenuEvents() {
                 
                 if (saveSettings()) {
                     // Reset logo ke default
-                    updateAllLogoPreviews('logo.png');
+                    updateAllLogoPreviews('logo2.png');
                     
                     loadSettings();
                     loadLeftCarousel();
@@ -4713,7 +4713,7 @@ function loadLogoWithPriority() {
         var settingsLogo = settings.logo;
         
         // PRIORITAS 3: Logo default
-        var defaultLogo = 'logo.png';
+        var defaultLogo = 'logo2.png';
         
         var logoToUse = savedLogo || settingsLogo || defaultLogo;
         
@@ -4730,8 +4730,8 @@ function loadLogoWithPriority() {
     } catch (e) {
         console.error('Error loadLogoWithPriority:', e);
         // Fallback ke default
-        if (headerLogo) headerLogo.src = 'logo.png';
-        if (previewLogo) previewLogo.src = 'logo.png';
+        if (headerLogo) headerLogo.src = 'logo2.png';
+        if (previewLogo) previewLogo.src = 'logo2.png';
     }
 }
 
@@ -4992,4 +4992,5 @@ function loadRunningTextsFromSettings() {
 </script>
 </body>
 </html>
+
 
