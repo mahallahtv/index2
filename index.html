@@ -742,67 +742,6 @@
         box-shadow: 0 0 0 3px rgba(0,0,0,0.1);
     }
 
-    /* Splash Screen */
-    /* Splash Screen Sederhana untuk STB */
-    #splashScreen {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: #0f0f0f;
-        z-index: 99999;
-        text-align: center;
-        padding-top: 15%;
-        display: none; /* Awalnya hidden */
-    }
-
-    .splash-logo {
-        max-width: 250px;
-        max-height: 150px;
-        margin-bottom: 20px;
-    }
-
-    .splash-title {
-        color: white;
-        font-size: 24px;
-        font-weight: bold;
-        margin-bottom: 10px;
-    }
-
-    .splash-subtitle {
-        color: #cccccc;
-        font-size: 14px;
-        margin-bottom: 40px;
-    }
-
-    #enterBtn {
-        background-color: #005a31;
-        color: white;
-        border: none;
-        border-radius: 50%;
-        width: 60px;
-        height: 60px;
-        font-size: 24px;
-        cursor: pointer;
-        display: inline-block;
-        line-height: 60px;
-        text-align: center;
-        margin-top: 20px;
-    }
-
-    #enterBtn:hover {
-        background-color: #00816d;
-    }
-
-    /* Pastikan konten utama tersembunyi saat splash screen aktif */
-    body.splash-active .header,
-    body.splash-active .media-container,
-    body.splash-active .adzan-table,
-    body.splash-active .marquee {
-        display: none !important;
-    }
-
     /* CSS untuk form Running Text */
     .running-text-group {
         position: relative;
@@ -842,15 +781,6 @@
   </style>
 </head>
 <body>
-
-<!-- Splash Screen -->
-<div id="splashScreen">
-    <img src="cover.png" alt="Logo Adzan TV" class="splash-logo" 
-    onerror="this.onerror=null; this.src='cover.png'">
-    <button id="enterBtn" onclick="enterMainApp()">
-        <i class="bi bi-arrow-right"></i>
-    </button>
-</div>
 
 <div id="screenblack"></div>
 
@@ -4353,15 +4283,6 @@ function showUpgradeFromMenu() {
 document.onkeydown = function(e) {
     e = e || window.event;
     var key = e.keyCode || e.which;
-
-    // Cek jika splash screen masih terbuka
-    var splashScreen = document.getElementById('splashScreen');
-    if (splashScreen && splashScreen.style.display !== 'none') {
-        if (key === 13 || key === 39) { // Enter atau Arrow Right
-            enterMainApp();
-            return false;
-        }
-    }
     
     switch(key) {
         case 13: // Enter/OK
@@ -4392,7 +4313,7 @@ document.onkeydown = function(e) {
             if (prevBtn) prevBtn.click();
             break;
 
-        case 39: // Right arrow
+        case 39: // Right arrow (untuk masuk dari splash screen)
             var nextBtn = document.querySelector('.carousel-control-next');
             if (nextBtn) nextBtn.click();
             break;
@@ -4435,189 +4356,6 @@ function applyPrayerOffsets() {
     adzanSchedule[prayer] = addMinutes(baseTime, offset);
   }
   updatePrayerTimesUI();
-}
-
-// ==================== SPLASH SCREEN ====================
-// ==================== SPLASH SCREEN SEDERHANA UNTUK STB ====================
-var splashScreenInitialized = false;
-
-function showSplashScreen() {
-    console.log('Menampilkan splash screen');
-    
-    var splashScreen = document.getElementById('splashScreen');
-    if (!splashScreen) return;
-    
-    // Tampilkan splash screen dengan display block (tanpa flex untuk kompatibilitas)
-    splashScreen.style.display = 'block';
-    splashScreen.style.opacity = '1';
-    
-    // Setup tombol enter
-    var enterBtn = document.getElementById('enterBtn');
-    if (enterBtn) {
-        // Hapus event listener lama jika ada
-        enterBtn.onclick = null;
-        
-        // Tambah event listener baru
-        enterBtn.onclick = function() {
-            console.log('Tombol enter diklik');
-            enterMainApp();
-        };
-        
-        // Juga support untuk keyboard (STB remote)
-        enterBtn.onkeydown = function(e) {
-            e = e || window.event;
-            var key = e.keyCode || e.which;
-            if (key === 13 || key === 39) { // Enter atau Arrow Right
-                enterMainApp();
-                return false;
-            }
-        };
-    }
-    
-    // Auto hide setelah 15 detik (fallback)
-    setTimeout(function() {
-        if (splashScreen.style.display !== 'none') {
-            console.log('Auto-hide splash screen setelah timeout');
-            enterMainApp();
-        }
-    }, 15000);
-    
-    splashScreenInitialized = true;
-}
-
-function enterMainApp() {
-    console.log('Memulai aplikasi utama');
-    
-    var splashScreen = document.getElementById('splashScreen');
-    if (!splashScreen) {
-        initMainApp();
-        return;
-    }
-    
-    // Sederhana: langsung sembunyikan tanpa fade animation
-    splashScreen.style.display = 'none';
-    
-    // Juga hapus dari DOM untuk pastikan
-    splashScreen.parentNode.removeChild(splashScreen);
-    
-    // Inisialisasi aplikasi utama
-    setTimeout(initMainApp, 100);
-}
-
-function initMainApp() {
-    console.log('Inisialisasi aplikasi utama');
-    
-    // Deteksi STB
-    window.isSTB = navigator.userAgent.toLowerCase().includes('stb') || !('ontouchstart' in window);
-    console.log('STB detected:', window.isSTB);
-    
-    // Cek dan update tampilan Jumat
-    if (typeof updateJumatDisplay === 'function') {
-        updateJumatDisplay();
-    }
-    
-    // Inisialisasi komponen dasar
-    if (typeof initClock === 'function') initClock();
-    if (typeof initDate === 'function') initDate();
-    if (typeof initHijri === 'function') initHijri();
-    if (typeof initPrayerTimes === 'function') initPrayerTimes();
-    if (typeof initCarousels === 'function') initCarousels();
-    if (typeof initRunningText === 'function') initRunningText();
-    
-    // Inisialisasi refresh ayat/hadits
-    if (typeof initAyatHaditsSystem === 'function') initAyatHaditsSystem();
-    
-    // Load data dari localStorage
-    if (typeof loadSettings === 'function') loadSettings();
-    
-    // Load pengaturan warna tema
-    if (typeof loadThemeSettings === 'function') loadThemeSettings();
-    
-    // Load countdown settings
-    if (typeof loadCountdownSettings === 'function') loadCountdownSettings();
-    if (typeof loadPrayerOffsets === 'function') loadPrayerOffsets();
-    
-    if (typeof updateHijri === 'function') updateHijri();
-    if (typeof applyPrayerOffsets === 'function') applyPrayerOffsets();
-    
-    // Cleanup localStorage jika perlu
-    if (typeof cleanupLocalStorage === 'function') cleanupLocalStorage();
-    
-    // Setup event listeners sederhana
-    if (typeof setupSimpleEvents === 'function') setupSimpleEvents();
-    
-    // Update Jumat display setiap menit
-    if (typeof updateJumatDisplay === 'function') {
-        setInterval(updateJumatDisplay, 60000);
-    }
-    
-    // Cek screen manager
-    if (typeof screenManager !== 'undefined' && screenManager) {
-        console.log('Screen Manager terintegrasi');
-        if (screenManager.isScreenOff) {
-            console.log('Screen sedang dalam keadaan OFF');
-        }
-    }
-    
-    // Aktifkan audio context dengan cara sederhana
-    setTimeout(function() {
-        var audio = new Audio();
-        audio.src = 'beep.mp3';
-        audio.volume = 0.01; // Sangat rendah
-        audio.play().then(function() {
-            audio.pause();
-            audio.currentTime = 0;
-            console.log('Audio context activated');
-        }).catch(function(e) {
-            console.log('Audio activation failed, continuing anyway');
-        });
-    }, 500);
-}
-
-
-
-function activateAudioContext() {
-    try {
-        // Buat audio context dan play audio pendek
-        var audio = new Audio();
-        audio.src = 'beep.mp3'; // Gunakan file beep yang kecil
-        audio.volume = 0.1; // Volume rendah
-        audio.play().then(function() {
-            // Hentikan segera
-            audio.pause();
-            audio.currentTime = 0;
-            
-            console.log('Audio context activated successfully');
-            
-            // Set flag bahwa user sudah berinteraksi
-            window.userInteracted = true;
-            
-        }).catch(function(e) {
-            console.log('Audio activation attempt:', e);
-            // Tetap set flag untuk melanjutkan
-            window.userInteracted = true;
-        });
-    } catch (e) {
-        console.log('Error in audio activation:', e);
-        window.userInteracted = true;
-    }
-}
-
-function testAudioPlayback() {
-    // Coba mainkan shalawat sebentar untuk testing
-    var audioBeep = document.getElementById('audioBeep');
-    if (audioBeep) {
-        audioBeep.volume = 0.3;
-        audioBeep.play().then(function() {
-            // Hentikan setelah 2 detik
-            setTimeout(function() {
-                audioBeep.pause();
-                audioBeep.currentTime = 0;
-            }, 2000);
-        }).catch(function(e) {
-            console.log('Test audio playback failed:', e);
-        });
-    }
 }
 
 function resetAllAudioStates() {
@@ -4738,16 +4476,61 @@ function softResetApp() {
 // Pastikan screen manager tidak mengganggu fungsi utama
 
 // Di window.onload, tambahkan:
-// Panggil splash screen saat halaman dimuat
 window.onload = function() {
-    console.log('Aplikasi Adzan Mahallah TV v2.0 loading...');
+    console.log('Aplikasi Adzan Mahallah TV v2.0 diinisialisasi');
     
-    // Tunggu sebentar agar DOM benar-benar siap
-    setTimeout(function() {
-        showSplashScreen();
-    }, 500);
+    // Deteksi STB
+    isSTB = navigator.userAgent.toLowerCase().includes('stb') || !('ontouchstart' in window);
+
+    // Cek dan update tampilan Jumat
+    updateJumatDisplay();
+
+    // Inisialisasi komponen
+    initClock();
+    initDate();
+    initHijri();
+    initPrayerTimes();
+    initCarousels();
+    initRunningText();
+
+    // Inisialisasi refresh ayat/hadits ← TAMBAH INI
+    initAyatHaditsSystem();
+
+    // Load data dari localStorage
+    loadSettings();
+    
+    // Load pengaturan warna tema
+    loadThemeSettings();
+
+    // Load countdown settings
+    loadCountdownSettings();
+    loadPrayerOffsets();
+
+    updateHijri();
+ 
+    applyPrayerOffsets();
+
+    // Cleanup localStorage jika perlu
+    cleanupLocalStorage();
+
+    // Setup event listeners sederhana
+    setupSimpleEvents();
+    
+    // Update Jumat display setiap menit (untuk handle pergantian hari)
+    setInterval(updateJumatDisplay, 60000);
+    
+    // Periksa apakah screen manager sudah dimuat
+    if (typeof screenManager !== 'undefined' && screenManager) {
+        console.log('Screen Manager terintegrasi');
+        
+        // Jangan start jika screen sedang off
+        if (screenManager.isScreenOff) {
+            console.log('Screen sedang dalam keadaan OFF');
+        }
+    }
 };
 
+// Fungsi untuk memuat logo dengan prioritas
 // Fungsi untuk memuat logo dengan prioritas
 function loadLogoWithPriority() {
     try {
@@ -4785,15 +4568,10 @@ function loadLogoWithPriority() {
     }
 }
 
-
-
 // Modifikasi fungsi stopAllAudio untuk integrasi
 function stopAllAudio() {
     try {
-        const splashScreen = document.getElementById('splashScreen');
-        if (splashScreen && splashScreen.style.display !== 'none') {
-            return;
-        }
+
         const audioElements = [
             'audioShalawat',
             'audioAdzan', 
